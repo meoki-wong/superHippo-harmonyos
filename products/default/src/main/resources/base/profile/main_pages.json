@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Welcome/index",
+    "pages/Home/index",
+    "pages/Index",
+    "pages/AdaptiveIndex",
+    "pages/ResponsiveIndex",
+    "pages/SystemCapabilitiesIndex"
+  ]
+}
