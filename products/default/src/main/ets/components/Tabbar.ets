@@ -1,3 +1,5 @@
+
+import Home from '../pages/Home/index'
 @Component
 export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
@@ -25,7 +27,7 @@ export default struct Tabbar {
   build() {
     Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#e5e5e5')
+        Home().width('100%').height('100%')
       }
       .tabBar(this.TabBuilder('首页', 0, $r('app.media.home_default'), $r('app.media.home_select')))
 

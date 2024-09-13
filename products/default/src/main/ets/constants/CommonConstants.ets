@@ -151,6 +151,6 @@ export class CommonConstants {
   /**
    * 首页路由
    */
-  static readonly HOME_PAGE_URL: string = 'pages/Home/index'
+  static readonly HOME_PAGE_URL: string = 'pages/Index'
 
 }
