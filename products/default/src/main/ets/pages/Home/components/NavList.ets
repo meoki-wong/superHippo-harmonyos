@@ -29,7 +29,7 @@ export default struct HomeNavList {
                 .vertical(true)
                 .height(20)
                 .alignSelf(ItemAlign.Center)
-                .visibility(HomeCommonData.home_nav_list.length - 1 === index ? Visibility.Hidden : Visibility.Visible)
+                .visibility(HomeCommonData.home_nav_list.length - 1 === index ? Visibility.None : Visibility.Visible)
             }
 
           }
@@ -37,7 +37,7 @@ export default struct HomeNavList {
         })
 
       }.listDirection(Axis.Horizontal)
-      Divider().strokeWidth(1).color('#EEE')
+      Divider().strokeWidth(1).color($r('app.color.home_divider'))
     }.margin({ top: 30 }).height(89)
   }
 }
