@@ -1,5 +1,6 @@
 
 import Home from '../pages/Home/index'
+import PassCard from '../pages/PassCard'
 @Component
 export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
@@ -28,6 +29,8 @@ export default struct Tabbar {
     Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
       TabContent() {
         Home().width('100%').height('100%')
+
+        // PassCard()
       }
       .tabBar(this.TabBuilder('首页', 0, $r('app.media.home_default'), $r('app.media.home_select')))
 
@@ -36,7 +39,7 @@ export default struct Tabbar {
       }.tabBar(this.TabBuilder('指南', 1, $r('app.media.finger_default'), $r('app.media.finger_select')))
 
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#e5e5e5')
+        PassCard()
       }.tabBar(this.TabBuilder('CLUB', 2, $r('app.media.club_default'), $r('app.media.club_select')))
 
       TabContent() {

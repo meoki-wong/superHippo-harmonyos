@@ -1,6 +1,6 @@
 import { CatalogueListComponent } from '../view/CatalogueListComponent';
 import CatalogueViewModel from '../viewmodel/CatalogueViewModel';
-import Tabbar from '../components/Tabbar'
+import { Tabbar } from '../components'
 
 /**
  * Index is the entry of application and Here is a list showing three buttons,

@@ -47,6 +47,14 @@
           }
         ],
       }
+    ],
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET",
+        "usedScene": {
+          "when":"inuse"
+        }
+      },
     ]
   }
 }
