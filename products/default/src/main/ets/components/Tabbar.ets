@@ -7,6 +7,9 @@ export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
   @State currentIndex: number = 0
 
+    handleChangeTabs= (currentIndex: number) => {
+      this.currentIndex = currentIndex
+    }
   @Builder
   TabBuilder(title: string, number: number, selectedImg: Resource, defaultImg: Resource) {
     Column() {
@@ -59,6 +62,6 @@ export default struct Tabbar {
       TabContent() {
         Column().width('100%').height('100%').backgroundColor('#e5e5e5')
       }.tabBar(this.TabBuilder('我的', 4, $r('app.media.mine_default'), $r('app.media.mine_select')))
-    }.barBackgroundColor('#0092FF').barWidth('100%').barHeight(61)
+    }.barBackgroundColor('#0092FF').barWidth('100%').barHeight(61).onChange(this.handleChangeTabs)
   }
 }
