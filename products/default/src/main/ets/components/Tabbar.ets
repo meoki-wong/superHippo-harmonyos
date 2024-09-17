@@ -1,6 +1,7 @@
 
 import Home from '../pages/Home/index'
 import PassCard from '../pages/PassCard'
+import Message from '../pages/Messsage'
 @Component
 export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
@@ -27,25 +28,35 @@ export default struct Tabbar {
 
   build() {
     Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
+      /*
+       * 首页
+       * */
       TabContent() {
-        Home().width('100%').height('100%')
-
-        // PassCard()
+        // Home().width('100%').height('100%')
+        Message()
       }
       .tabBar(this.TabBuilder('首页', 0, $r('app.media.home_default'), $r('app.media.home_select')))
-
+      /*
+       * 指南
+       * */
       TabContent() {
         Column().width('100%').height('100%').backgroundColor('#e5e5e5')
       }.tabBar(this.TabBuilder('指南', 1, $r('app.media.finger_default'), $r('app.media.finger_select')))
-
+      /*
+       * 通行证
+       * */
       TabContent() {
         PassCard()
       }.tabBar(this.TabBuilder('CLUB', 2, $r('app.media.club_default'), $r('app.media.club_select')))
-
+      /*
+       * 消息
+       * */
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#e5e5e5')
+        Message()
       }.tabBar(this.TabBuilder('PAPER', 3, $r('app.media.paper_default'), $r('app.media.paper_select')))
-
+      /*
+       * 我的
+       * */
       TabContent() {
         Column().width('100%').height('100%').backgroundColor('#e5e5e5')
       }.tabBar(this.TabBuilder('我的', 4, $r('app.media.mine_default'), $r('app.media.mine_select')))
