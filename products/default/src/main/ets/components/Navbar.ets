@@ -3,7 +3,7 @@ export default struct Navbar {
   @Prop title: string | undefined | null = ''
   @Prop showBackIcon: boolean
   @Prop showMoreIcon: boolean
-  @Prop bgColor: string | ResourceColor = '#fff'
+  @Prop bgColor: string | ResourceColor = 'rgba(72,195,255, 1)'
   @Prop showOpacity: boolean
   @Prop fontColor: string
 
@@ -22,7 +22,12 @@ export default struct Navbar {
           .width(18)
           .height(4)
           .visibility(this.showMoreIcon ? Visibility.Visible : Visibility.Hidden)
-      }.margin({bottom: 10})
-    }.padding({ left: 16, right: 16 }).height(80).backgroundColor(this.showOpacity ? 'rgba(0,0,0,0)' : this.bgColor).alignItems(VerticalAlign.Bottom)
+      }.margin({ bottom: 10 })
+    }
+    .padding({ left: 16, right: 16 })
+    .height(80)
+    .backgroundColor(this.showOpacity ? 'rgba(0,0,0,0)' : this.bgColor)
+    .alignItems(VerticalAlign.Bottom)
+    .position({ x: 0, y: 0 })
   }
 }

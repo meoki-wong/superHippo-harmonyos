@@ -5,19 +5,19 @@ export default class HomeCommonData {
 
   static readonly home_nav_list: Array<HomeNavListType> = [
     {
-      uri: $r('app.media.home_select'),
+      uri: $r('app.media.home_map_icon'),
       title: '地图'
     },
     {
-      uri: $r('app.media.home_select'),
+      uri: $r('app.media.home_active_icon'),
       title: '活动'
     },
     {
-      uri: $r('app.media.home_select'),
+      uri: $r('app.media.home_book_icon'),
       title: '预定'
     },
     {
-      uri: $r('app.media.home_select'),
+      uri: $r('app.media.home_staff_icon'),
       title: '客服'
     },
   ]
