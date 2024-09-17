@@ -32,8 +32,7 @@ export default struct Tabbar {
        * 首页
        * */
       TabContent() {
-        // Home().width('100%').height('100%')
-        Message()
+        Home()
       }
       .tabBar(this.TabBuilder('首页', 0, $r('app.media.home_default'), $r('app.media.home_select')))
       /*
