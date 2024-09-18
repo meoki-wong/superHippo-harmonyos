@@ -1,17 +1,29 @@
 
 
 
-export interface FriendListType {
-  uri: Resource
-  desc: string
-  needCloud?: boolean
+
+
+
+export interface  CardDataStatisticsType {
+  title: string
+  value: string
 }
 
-export interface ChatListItemType {
-  uri: Resource
-  nickname: string
+export interface BalanceCardShowListItemType {
+  uri: Resource,
+  title: string
+}
+
+export interface DynamicListItemType {
+  id: number | string,
+  title: string
+
+}
+
+
+
+export interface MoodListTypeItem {
   time: string
-  lastMsg: string | undefined | null
-  needCloud?: boolean
-  online: boolean
+  user_title: string
+  imageList: Array<Resource>
 }
