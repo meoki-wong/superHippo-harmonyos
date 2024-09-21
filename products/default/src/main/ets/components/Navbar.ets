@@ -13,9 +13,9 @@ export default struct Navbar {
         justifyContent: FlexAlign.SpaceBetween,
         alignItems: ItemAlign.Center
       }) {
-        Image($r('app.media.return_left'))
-          .width(9)
-          .height(17)
+        Image($r("app.media.arrow_left"))
+          .width(15)
+          .height(25)
           .visibility(this.showBackIcon ? Visibility.Visible : Visibility.Hidden)
         Text(this.title).fontFamily('PingFangSC, PingFang SC').fontSize(17).fontWeight(500).fontColor(this.fontColor)
         Image($r('app.media.more_white'))

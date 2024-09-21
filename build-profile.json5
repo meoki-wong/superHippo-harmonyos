@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/wangshan/.ohos/config/default_superHippo_IskjcbukkeglzxcO5nxbv9p2QZqd3kaP-RxaISZaFws=.cer",
+          "storePassword": "0000001BF72EF47D123B05D1279222D3C6C3C8603066203BADD82FD9882CD4D7A7257DC27F2C775EAF7AC9",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B52E9D14C788B923C3C1606F38DFCDDFA2FE6A79757886F62E7E79AC66657117847511D53FF45E8",
+          "profile": "/Users/wangshan/.ohos/config/default_superHippo_IskjcbukkeglzxcO5nxbv9p2QZqd3kaP-RxaISZaFws=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/wangshan/.ohos/config/default_superHippo_IskjcbukkeglzxcO5nxbv9p2QZqd3kaP-RxaISZaFws=.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",

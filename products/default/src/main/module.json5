@@ -55,6 +55,14 @@
           "when":"inuse"
         }
       },
+      {
+        "name" : "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:app_name",
+        "usedScene": {
+          "when":"always"
+        }
+      },
+
     ]
   }
 }

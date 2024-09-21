@@ -35,6 +35,10 @@
     {
       "name": "location_cap_valid",
       "value": "This device has the system capability of location service"
+    },
+    {
+      "name": "reason",
+      "value": "获取系统相机权限用于拍照上传"
     }
   ]
 }

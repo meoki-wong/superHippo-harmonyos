@@ -15,7 +15,7 @@ export default struct MoodListComponent {
           }.margin({right: 6, top: -2}).fontColor('#CAC0E0').flexShrink(0)
           Column(){
             // RichText(item.user_title)
-            Text(item.user_title).margin({bottom: 8}).font({size: 14, weight: 400}).fontColor('#CAC0E0')
+            Text(item.user_title).margin({bottom: 8}).font({size: 14, weight: 400}).fontColor('#CAC0E0').lineHeight(20)
             Grid(){
               ForEach(item.imageList, (uri: Resource | undefined) => {
                 GridItem(){

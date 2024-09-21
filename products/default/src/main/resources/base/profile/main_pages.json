@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Welcome/index",
+    "pages/Mine/PostNews/index",
     "pages/Index",
     "pages/AdaptiveIndex",
     "pages/ResponsiveIndex",

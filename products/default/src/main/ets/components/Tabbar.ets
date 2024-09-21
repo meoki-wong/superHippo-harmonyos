@@ -2,6 +2,7 @@
 import Home from '../pages/Home/index'
 import PassCard from '../pages/PassCard'
 import Message from '../pages/Messsage'
+import Mine from '../pages/Mine'
 @Component
 export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
@@ -60,7 +61,7 @@ export default struct Tabbar {
        * 我的
        * */
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#e5e5e5')
+        Mine()
       }.tabBar(this.TabBuilder('我的', 4, $r('app.media.mine_default'), $r('app.media.mine_select')))
     }.barBackgroundColor('#0092FF').barWidth('100%').barHeight(61).onChange(this.handleChangeTabs)
   }

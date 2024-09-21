@@ -2,13 +2,15 @@ import { Navbar } from '../../components'
 import { CardDataStatisticsType, BalanceCardShowListItemType, DynamicListItemType } from './types'
 import MineCommonData from './utils/commonData'
 import MoodListComponent from './components/MoodList'
+import router from '@ohos.router'
+
 @Entry
 @Component
 export default struct Mine {
   scroller: Scroller = new Scroller()
   @State showNavbar: boolean = false
   @State scrollCount: number = 0
-  @State navBgColor: string = 'rgba(72,195,255,0)'
+  @State navBgColor: string = 'rgba(18,19,37,0)'
   @State selectListIndex: number = 0
   handleSelectDynamic = (index: number): void => {
     this.selectListIndex = index
@@ -17,10 +19,15 @@ export default struct Mine {
     this.scrollCount += yOffset
     let color = (this.scrollCount - 60) / 100 >= 1 ? 1 : (this.scrollCount - 60) / 100
     this.showNavbar = this.scrollCount > 60
-    this.navBgColor = `rgba(72,195,255, ${color})`
+    this.navBgColor = `rgba(18,19,37, ${color})`
     console.log('---监听页面滚动事件', yOffset, this.scrollCount, color)
   }
-
+  goPushMoodPage = () => {
+    console.log('------')
+  router.pushUrl({
+    url: "pages/Mine/PostNews/index"
+  })
+  }
   build() {
     Column() {
       Navbar({
@@ -172,7 +179,7 @@ export default struct Mine {
               }.width(293).height(70).linearGradient({
                 angle: 180,
                 colors: [['#312351', 0], ['#322757', 1]]
-              }).borderRadius(12)
+              }).borderRadius(12).onClick(this.goPushMoodPage)
             }.margin({bottom: 20})
             MoodListComponent()
           }.padding({left: 20, right: 20})
