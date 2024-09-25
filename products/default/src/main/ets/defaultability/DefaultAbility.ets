@@ -13,8 +13,7 @@ export default class DefaultAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    let loadRoute: string
-    loadRoute = 'pages/Welcome/index'
+    let loadRoute: string = 'pages/Welcome/index'
     // Main window is created, set main page for this ability.
     Logger.info('Ability onWindowStageCreate');
     // 设置窗口全屏

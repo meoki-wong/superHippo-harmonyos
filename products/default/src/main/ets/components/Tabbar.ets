@@ -6,11 +6,8 @@ import Mine from '../pages/Mine'
 @Component
 export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
-  @State currentIndex: number = 0
 
-    handleChangeTabs= (currentIndex: number) => {
-      this.currentIndex = currentIndex
-    }
+  @State currentIndex: number = 0
   @Builder
   TabBuilder(title: string, number: number, selectedImg: Resource, defaultImg: Resource) {
     Column() {
@@ -29,7 +26,6 @@ export default struct Tabbar {
       this.tabsController.changeIndex(this.currentIndex)
     })
   }
-
   build() {
     Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
       /*
@@ -63,6 +59,6 @@ export default struct Tabbar {
       TabContent() {
         Mine()
       }.tabBar(this.TabBuilder('我的', 4, $r('app.media.mine_default'), $r('app.media.mine_select')))
-    }.barBackgroundColor('#0092FF').barWidth('100%').barHeight(61).onChange(this.handleChangeTabs)
+    }.barBackgroundColor('#0092FF').barWidth('100%').barHeight(61)
   }
 }
