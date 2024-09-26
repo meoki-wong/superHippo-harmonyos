@@ -1,3 +1,5 @@
+import router from '@ohos.router'
+
 @Component
 export default struct Navbar {
   @Prop title: string | undefined | null = ''
@@ -7,6 +9,10 @@ export default struct Navbar {
   @Prop showOpacity: boolean
   @Prop fontColor: string
 
+
+  backPage = () => {
+    router.back()
+  }
   build() {
     Row() {
       Flex({
@@ -16,7 +22,7 @@ export default struct Navbar {
         Image($r("app.media.arrow_left"))
           .width(15)
           .height(25)
-          .visibility(this.showBackIcon ? Visibility.Visible : Visibility.Hidden)
+          .visibility(this.showBackIcon ? Visibility.Visible : Visibility.Hidden).onClick(this.backPage)
         Text(this.title).fontFamily('PingFangSC, PingFang SC').fontSize(17).fontWeight(500).fontColor(this.fontColor)
         Image($r('app.media.more_white'))
           .width(18)

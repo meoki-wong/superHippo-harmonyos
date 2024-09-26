@@ -17,7 +17,9 @@ struct PostNews {
   deleteImage = (index: number) => {
     this.pictureList.splice(index, 1)
   }
-
+  publishNews = () => {
+  //   内容发布
+  }
   build() {
     Column() {
       Navbar({
@@ -48,7 +50,7 @@ struct PostNews {
                 .font({ size: 13, weight: 500, family: 'PingFangSC, PingFang SC' })
                 .fontColor('#fff')
               Image($r('app.media.push_icon')).width(12).height(12)
-            }
+            }.onClick(this.publishNews)
           }.width(91).height(36).linearGradient({
             angle: 90,
             colors: [['#9D61FD', 0], ['#4161FF', 1]]

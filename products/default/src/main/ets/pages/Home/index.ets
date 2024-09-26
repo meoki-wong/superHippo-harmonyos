@@ -14,7 +14,6 @@ struct Home {
     let color = (this.scrollCount - 60) / 100 >= 1? 1 : (this.scrollCount - 60) / 100
     this.showNavbar = this.scrollCount > 60
     this.navBgColor = `rgba(72,195,255, ${color})`
-    console.log('---监听页面滚动事件', yOffset, this.scrollCount,color)
   }
 
   build() {

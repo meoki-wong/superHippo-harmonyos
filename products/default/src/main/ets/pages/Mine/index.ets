@@ -20,14 +20,13 @@ export default struct Mine {
     let color = (this.scrollCount - 60) / 100 >= 1 ? 1 : (this.scrollCount - 60) / 100
     this.showNavbar = this.scrollCount > 60
     this.navBgColor = `rgba(18,19,37, ${color})`
-    console.log('---监听页面滚动事件', yOffset, this.scrollCount, color)
   }
   goPushMoodPage = () => {
-    console.log('------')
-  router.pushUrl({
-    url: "pages/Mine/PostNews/index"
-  })
+    router.pushUrl({
+      url: "pages/Mine/PostNews/index"
+    })
   }
+
   build() {
     Column() {
       Navbar({
@@ -171,18 +170,28 @@ export default struct Mine {
           /*
            * 动态列表
            * */
-          Column(){
-            Flex(){
-              Text('今天').margin({right: 12}).flexShrink(0).font({size: 15, weight: 400, family: 'PingFangSC, PingFang SC'}).fontColor('#CAC0E0')
-              Stack(){
-                Text('+  发布动态，让大家看到你').font({size: 14, weight: 400}).fontColor('#fff')
-              }.width(293).height(70).linearGradient({
+          Column() {
+            Flex() {
+              Text('今天')
+                .margin({ right: 12 })
+                .flexShrink(0)
+                .font({ size: 15, weight: 400, family: 'PingFangSC, PingFang SC' })
+                .fontColor('#CAC0E0')
+              Stack() {
+                Text('+  发布动态，让大家看到你').font({ size: 14, weight: 400 }).fontColor('#fff')
+              }
+              .width(293)
+              .height(70)
+              .linearGradient({
                 angle: 180,
                 colors: [['#312351', 0], ['#322757', 1]]
-              }).borderRadius(12).onClick(this.goPushMoodPage)
-            }.margin({bottom: 20})
+              })
+              .borderRadius(12)
+              .onClick(this.goPushMoodPage)
+            }.margin({ bottom: 20 })
+
             MoodListComponent()
-          }.padding({left: 20, right: 20})
+          }.padding({ left: 20, right: 20 })
 
         }
         .padding({ bottom: 80 })
