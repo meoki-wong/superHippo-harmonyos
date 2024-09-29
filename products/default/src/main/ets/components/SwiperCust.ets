@@ -24,7 +24,7 @@ export default struct SwiperCust {
   }
   changeItemPosition = () => {
     let firstElement: Resource = this.itemList.shift() as Resource;
-    animateTo({duration: 300}, () => {
+    animateTo({ duration: 300 }, () => {
       this.itemList.push(firstElement)
     })
   }
@@ -37,6 +37,7 @@ export default struct SwiperCust {
             .objectFit(ImageFit.Cover)
             .interpolation(ImageInterpolation.High)
         }
+        .visibility(index <= 2 ? Visibility.Visible : Visibility.None)
         .offset({
           x: this.headIndex === index && !this.changeIndex ? 0 :
             this.changeIndex && this.headIndex == index ? this.changePath : 53 * index,

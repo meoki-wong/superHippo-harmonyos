@@ -1,8 +1,6 @@
-
 import { HomeNavListType, UserOptionsType, ProductTabsType, GoodsType } from '../types/HomeType'
+
 export default class HomeCommonData {
-
-
   static readonly home_nav_list: Array<HomeNavListType> = [
     {
       uri: $r('app.media.home_map_icon'),
@@ -21,8 +19,6 @@ export default class HomeCommonData {
       title: '客服'
     },
   ]
-
-
   static readonly User_option_list: Array<UserOptionsType> = [
     {
       uri: $r('app.media.home_select'),
@@ -35,7 +31,6 @@ export default class HomeCommonData {
       title_ch: '约酒组局'
     },
   ]
-
   static readonly Home_calendar_list: Array<UserOptionsType> = [
     {
       uri: $r('app.media.home_calendar'),
@@ -43,7 +38,6 @@ export default class HomeCommonData {
       title_ch: '品牌活动日历',
     },
   ]
-
   /**
    * 首页产品筛选tab
    */
@@ -83,8 +77,6 @@ export default class HomeCommonData {
       id: 6
     }
   ]
-
-
   static readonly goodsList: Array<GoodsType> = [
     {
       uri: $r('app.media.goods1'),
@@ -109,7 +101,11 @@ export default class HomeCommonData {
       topic: '#兔子洞',
       price: '1000',
       id: 3
-
     },
+  ]
+  static readonly home_relate_swiper: Array<Resource> = [
+    $r('app.media.home_recommend'),
+    $r('app.media.swiper1'),
+    $r('app.media.swiper1')
   ]
 }
