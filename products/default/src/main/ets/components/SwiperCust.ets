@@ -51,6 +51,7 @@ export default struct SwiperCust {
   build() {
     Stack() {
       ForEach(this.itemList, (item: Resource, index: number) => {
+        // todo 变成column
         Row() {
           Image(item)
             .objectFit(ImageFit.Cover)
@@ -67,6 +68,7 @@ export default struct SwiperCust {
         .blur(10 * Math.abs(this.headIndex - index))
       })
     }
+    .width('100%')
     .alignContent(Alignment.Top)
     .gesture(PanGesture({ direction: PanDirection.Horizontal }).onActionStart((event: GestureEvent) => {
       this.changePath = event.offsetX

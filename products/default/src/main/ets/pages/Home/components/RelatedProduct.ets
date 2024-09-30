@@ -11,5 +11,6 @@ export default struct RelatedProduct {
 
       SwiperCust({itemList: HomeCommonData.home_relate_swiper}).width('100%')
     }.margin({ top: 20 })
+    .backgroundImageSize(ImageSize.Cover)
   }
 }

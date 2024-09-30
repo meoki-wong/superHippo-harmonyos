@@ -3,6 +3,7 @@ import Home from '../pages/Home/index'
 import PassCard from '../pages/PassCard'
 import Message from '../pages/Messsage'
 import Mine from '../pages/Mine'
+import SelectFriend from '../pages/SelectFriend'
 @Component
 export default struct Tabbar {
   private tabsController: TabsController = new TabsController()
@@ -39,7 +40,7 @@ export default struct Tabbar {
        * 指南
        * */
       TabContent() {
-        Column().width('100%').height('100%').backgroundColor('#e5e5e5')
+        SelectFriend()
       }.tabBar(this.TabBuilder('指南', 1, $r('app.media.finger_default'), $r('app.media.finger_select')))
       /*
        * 通行证
