@@ -106,6 +106,6 @@ export default class HomeCommonData {
   static readonly home_relate_swiper: Array<Resource> = [
     $r('app.media.home_recommend'),
     $r('app.media.swiper1'),
-    $r('app.media.swiper1')
+    $r('app.media.girl2')
   ]
 }

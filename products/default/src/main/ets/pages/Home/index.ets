@@ -11,7 +11,7 @@ struct Home {
   @State navBgColor: string = 'rgba(72,195,255,0)'
   observerScroll = (xOffset: number, yOffset: number) => {
     this.scrollCount += yOffset
-    let color = (this.scrollCount - 60) / 100 >= 1? 1 : (this.scrollCount - 60) / 100
+    let color = (this.scrollCount - 60) / 100 >= 1 ? 1 : (this.scrollCount - 60) / 100
     this.showNavbar = this.scrollCount > 60
     this.navBgColor = `rgba(72,195,255, ${color})`
   }
