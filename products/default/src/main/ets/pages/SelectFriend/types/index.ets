@@ -9,4 +9,5 @@ export interface StrangePersonType {
   gender: number
   constellation: string | undefined
   bodyHeight: number
+  age: number
 }

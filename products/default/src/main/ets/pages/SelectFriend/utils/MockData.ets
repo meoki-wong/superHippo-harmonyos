@@ -8,16 +8,18 @@ export const StrangePersonList: StrangePersonType[] = [
     constellation: '水瓶座',
     gender: 1,
     bodyHeight: 166,
-    distance: 32.22
+    distance: 32.22,
+    age: 22
   },
   {
     uri: $r('app.media.girl2'),
     name: '哈哈哈哈哈2',
     address: '海淀区',
     constellation: '水瓶座',
-    gender: 1,
+    gender: 2,
     bodyHeight: 166,
-    distance: 32.22
+    distance: 32.22,
+    age: 22
   },
   {
     uri: $r('app.media.girl3'),
@@ -26,16 +28,18 @@ export const StrangePersonList: StrangePersonType[] = [
     constellation: '水瓶座',
     gender: 1,
     bodyHeight: 166,
-    distance: 32.22
+    distance: 32.22,
+    age: 23
   },
   {
     uri: $r('app.media.girl4'),
     name: '哈哈哈哈哈4',
     address: '海淀区',
     constellation: '水瓶座',
-    gender: 1,
+    gender: 2,
     bodyHeight: 166,
-    distance: 32.22
+    distance: 32.22,
+    age: 28
   },
 
 ]

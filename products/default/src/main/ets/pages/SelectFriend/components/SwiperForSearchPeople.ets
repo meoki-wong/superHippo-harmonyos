@@ -31,13 +31,53 @@ export default struct SwiperForSearchPeople {
           Stack() {
             Image(item.uri).width(this.setWidthValue(index)).height(this.setHeightValue(index)).borderRadius(12)
             Column() {
-              Text(item.name).font({ size: 24, weight: 500, family: 'PingFangSC, PingFang SC' }).fontColor('#fff').textAlign(TextAlign.Start).margin({bottom: 6})
-              Flex({alignItems: ItemAlign.Center}){
-                Text(String(item.distance)).fontColor('#F7C539').font({size: 14, weight: 500}).margin({right: 5})
-                Text('km').fontColor('#fff').font({weight: 400, size: 12}).margin({right: 10})
-                Text(item.address).fontColor('#fff').font({weight: 400, size: 12})
-              }.margin({bottom: 11})
-            }.width('100%').position({bottom: 0, left: 0}).padding({left: 20, right: 20}).alignItems(HorizontalAlign.Start)
+              Text(item.name)
+                .font({ size: 24, weight: 500, family: 'PingFangSC, PingFang SC' })
+                .fontColor('#fff')
+                .textAlign(TextAlign.Start)
+                .margin({ bottom: 6 })
+              Flex({ alignItems: ItemAlign.Center }) {
+                Text(String(item.distance)).fontColor('#F7C539').font({ size: 14, weight: 500 }).margin({ right: 5 })
+                Text('km').fontColor('#fff').font({ weight: 400, size: 12 }).margin({ right: 10 })
+                Text(item.address).fontColor('#fff').font({ weight: 400, size: 12 })
+              }.margin({ bottom: 11 })
+
+              Flex() {
+                Row() {
+                  Text(`${item.gender === 0 ? '♂' : '♀'} ${item.age}`)
+                    .font({ size: 12, weight: 400 })
+                    .fontColor('#fff')
+                    .textAlign(TextAlign.Center)
+                }
+                .width(46)
+                .height(24)
+                .borderRadius(5)
+                .backgroundColor('#FF406A')
+                .justifyContent(FlexAlign.Center)
+                .alignItems(VerticalAlign.Center)
+
+                Row() {
+                  Text(item.constellation).font({ size: 12, weight: 400 })
+                    .fontColor('#fff')
+                    .textAlign(TextAlign.Center).width('100%')
+                }
+                .width(51)
+                .height(24)
+                .backgroundColor('rgba(255,255,255,0.4)')
+                .borderRadius(5)
+                .margin({ left: 5, right: 5 })
+
+                Row() {
+                  Text(`${item.bodyHeight}cm`).font({ size: 12, weight: 400 })
+                    .fontColor('#fff')
+                    .textAlign(TextAlign.Center).width('100%')
+                }.width(51).height(24).backgroundColor('rgba(255,255,255,0.4)').borderRadius(5)
+              }
+            }
+            .width('100%')
+            .position({ bottom: 0, left: 0 })
+            .padding({ left: 20, right: 20 })
+            .alignItems(HorizontalAlign.Start)
           }
         }
         .visibility(index > 2 ? Visibility.None : Visibility.Visible)
@@ -50,6 +90,7 @@ export default struct SwiperForSearchPeople {
         .gesture(
           PanGesture({ direction: PanDirection.Horizontal }).onActionStart((event: GestureEvent) => {
             this.handleStartMovePic(event.offsetX)
+
           }).onActionUpdate((event: GestureEvent) => {
             this.handleUpdateMovePic(event.offsetX)
           }).onActionEnd(() => {
