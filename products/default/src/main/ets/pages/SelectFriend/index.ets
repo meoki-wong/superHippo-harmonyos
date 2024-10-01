@@ -13,8 +13,8 @@ export default struct SelectFriend {
         fontColor: '#fff'
       }).margin(0)
       Column(){
-        SwiperForSearchPerson().margin({top: 16})
-      }.padding({left: 20, right: 20})
+        SwiperForSearchPerson()
+      }.padding({left: 20, right: 20}).margin({top: 20})
     }.backgroundColor('#121325').height('100%').width('100%')
   }
 }
