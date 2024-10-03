@@ -1,5 +1,6 @@
-import { StrangePersonList } from '../utils/MockData'
+import { StrangePersonList, StrangePersonLisst } from '../utils/MockData'
 import { StrangePersonType } from '../types'
+import { JSON } from '@kit.ArkTS'
 
 @Component
 export default struct SwiperForSearchPeople {
@@ -8,8 +9,12 @@ export default struct SwiperForSearchPeople {
   @State changeWidthVal: number = 0
   @State changeHeightVal: number = 0
   @State changeOffsetVal: number = 0
+  @State headIndex: number = 0
   aboutToAppear(): void {
-    this.StrangePersonList = [...StrangePersonList]
+    this.addPersonList()
+  }
+  addPersonList = () => {
+    this.StrangePersonList.push(...StrangePersonList)
   }
   setWidthValue = (index: number) => {
     let list = [340, 320, 300]
@@ -21,7 +26,6 @@ export default struct SwiperForSearchPeople {
 
   }
   handleStartMovePic = (offset: number) => {
-    let absoluteVal = Math.abs(offset)
     this.offsetVal = offset
   }
   handleUpdateMovePic = (offset: number) => {
@@ -38,73 +42,57 @@ export default struct SwiperForSearchPeople {
     }
 
   }
-  handleEndMovePic = () => {
+  handleEndMovePic = (index: number) => {
     if (Math.abs(this.offsetVal) > 200) {
-      animateTo({
-        duration: 50,
-        onFinish: () => {
-          this.offsetVal = 0
-          this.changeWidthVal = 0
-          this.changeHeightVal = 0
-          this.changeOffsetVal = 0
-        }
-      }, () => {
-        this.offsetVal = this.offsetVal > 0 ? 3000 : -3000
-        this.StrangePersonList.shift()
-      })
+      this.headIndex++
+      this.StrangePersonList[index].isGone = true
 
-      return
-    }
-    animateTo({
-      duration: 300
-    }, () => {
+      this.changeWidthVal = 0
+      this.changeHeightVal = 0
+      this.changeOffsetVal = 0
       this.offsetVal = 0
-    })
+    } else {
+      animateTo({duration: 300}, () => {
+        this.offsetVal = 0
+      })
+    }
+
   }
-  handleDislikePerson = () => {
+  handleDislikePerson = (index: number) => {
+    this.handleSelectPerson(index, 'DISLIKE')
+  }
+  handleLikePerson = (index: number) => {
+    this.handleSelectPerson(index, 'LIKE')
+  }
+  handleSelectPerson = (index: number, type: 'LIKE' | 'DISLIKE') => {
     animateTo({
       duration: 300,
       onFinish: () => {
-        this.StrangePersonList.shift()
+        this.headIndex++
+        this.StrangePersonList[index].isGone = true
         this.offsetVal = 0
         this.changeWidthVal = 0
         this.changeHeightVal = 0
         this.changeOffsetVal = 0
-
+        if(this.StrangePersonList.length - 3 <= index){
+          this.StrangePersonList.push(...StrangePersonLisst)
+        }
       }
     }, () => {
-      this.offsetVal = -600
-      this.changeWidthVal = 20
-      this.changeHeightVal = 20
-      this.changeOffsetVal = 1
-    })
-
-  }
-  handleLikePerson = () => {
-    animateTo({
-      duration: 300,
-      onFinish: () => {
-        this.StrangePersonList.shift()
-        this.offsetVal = 0
-        this.changeWidthVal = 0
-        this.changeHeightVal = 0
-        this.changeOffsetVal = 0
-
-      }
-    }, () => {
-      this.offsetVal = 600
+      this.offsetVal = type === 'LIKE'? 600 : -600
       this.changeWidthVal = 20
       this.changeHeightVal = 20
       this.changeOffsetVal = 1
     })
   }
+
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
       ForEach(this.StrangePersonList, (item: StrangePersonType, index: number) => {
         Column() {
           Stack() {
-            Image(item.uri).width(this.setWidthValue(index)).height(this.setHeightValue(index)).borderRadius(12)
+            Image(item.uri).width(340 - 20 * (index-this.headIndex)).height(590 - 20*(index - this.headIndex)).borderRadius(12)
             Column() {
               Text(item.name)
                 .font({ size: 24, weight: 500, family: 'PingFangSC, PingFang SC' })
@@ -174,7 +162,7 @@ export default struct SwiperForSearchPeople {
                   .justifyContent(FlexAlign.Center)
                   .margin({ right: 16 })
                   .backgroundColor('#2A2A2A')
-                  .onClick(this.handleDislikePerson)
+                  .onClick(() => this.handleDislikePerson(index))
 
                   Row() {
                     Image($r('app.media.like_icon')).width(26).height(26)
@@ -185,7 +173,7 @@ export default struct SwiperForSearchPeople {
                   .alignItems(VerticalAlign.Center)
                   .justifyContent(FlexAlign.Center)
                   .backgroundColor('#2A2A2A')
-                  .onClick(this.handleLikePerson)
+                  .onClick(() => this.handleLikePerson(index))
                 }
               }.margin({ bottom: 24 })
             }
@@ -195,11 +183,11 @@ export default struct SwiperForSearchPeople {
             .alignItems(HorizontalAlign.Start)
           }
         }
-        .visibility(index > 2 ? Visibility.None : Visibility.Visible)
-        .zIndex(10 - index)
+        .visibility(2 < index - this.headIndex || item.isGone ? Visibility.None : Visibility.Visible)
+        .zIndex(-1 * index)
         .offset({
-          x: index === 0 ? this.offsetVal : 0,
-          y: 3 - (index - this.changeOffsetVal) * 12
+          x: index === this.headIndex ? this.offsetVal : 0,
+          y: 3 - (index - this.headIndex - this.changeOffsetVal) * 12
         })
         .width('100%')
         .gesture(
@@ -209,7 +197,7 @@ export default struct SwiperForSearchPeople {
           }).onActionUpdate((event: GestureEvent) => {
             this.handleUpdateMovePic(event.offsetX)
           }).onActionEnd(() => {
-            this.handleEndMovePic()
+            this.handleEndMovePic(index)
           })
         )
         .rotate({
@@ -218,7 +206,7 @@ export default struct SwiperForSearchPeople {
           z: 1,
           centerX: '0%',
           centerY: '100%',
-          angle: index === 0 ? this.offsetVal / 10 : 0
+          angle: index === this.headIndex ? this.offsetVal / 10 : 0
         })
       })
     }
