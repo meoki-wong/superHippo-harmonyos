@@ -1,7 +1,9 @@
 import { StrangePersonList, StrangePersonLisst } from '../utils/MockData'
 import { StrangePersonType } from '../types'
-import { JSON } from '@kit.ArkTS'
+import router from '@ohos.router'
+import { CommonConstants } from '../../../constants/CommonConstants'
 
+@Entry
 @Component
 export default struct SwiperForSearchPeople {
   @State offsetVal: number = 0
@@ -10,9 +12,22 @@ export default struct SwiperForSearchPeople {
   @State changeHeightVal: number = 0
   @State changeOffsetVal: number = 0
   @State headIndex: number = 0
+  @State screenY: number = 0
+
   aboutToAppear(): void {
     this.addPersonList()
   }
+
+  pageTransition() {
+    // 该页面进入动画时长为1000ms，尽量与另一页面的退出动画时长匹配
+    PageTransitionEnter({ duration: 1000 })
+      .slide(SlideEffect.Left)
+    // 该页面退出动画时长为1200ms，尽量与另一页面的进入动画时长匹配
+    PageTransitionExit({ duration: 1200 })
+      .translate({ x: 0, y: 100.0 })
+      .slide(SlideEffect.Top)
+  }
+
   addPersonList = () => {
     this.StrangePersonList.push(...StrangePersonList)
   }
@@ -31,7 +46,7 @@ export default struct SwiperForSearchPeople {
   handleUpdateMovePic = (offset: number) => {
     this.offsetVal = offset
     let absoluteVal = Math.abs(offset)
-    if(absoluteVal > 210){
+    if (absoluteVal > 210) {
       this.changeWidthVal = 20
       this.changeHeightVal = 20
       this.changeOffsetVal = 1
@@ -52,7 +67,7 @@ export default struct SwiperForSearchPeople {
       this.changeOffsetVal = 0
       this.offsetVal = 0
     } else {
-      animateTo({duration: 300}, () => {
+      animateTo({ duration: 300 }, () => {
         this.offsetVal = 0
       })
     }
@@ -74,25 +89,32 @@ export default struct SwiperForSearchPeople {
         this.changeWidthVal = 0
         this.changeHeightVal = 0
         this.changeOffsetVal = 0
-        if(this.StrangePersonList.length - 3 <= index){
+        if (this.StrangePersonList.length - 3 <= index) {
           this.StrangePersonList.push(...StrangePersonLisst)
         }
       }
     }, () => {
-      this.offsetVal = type === 'LIKE'? 600 : -600
+      this.offsetVal = type === 'LIKE' ? 600 : -600
       this.changeWidthVal = 20
       this.changeHeightVal = 20
       this.changeOffsetVal = 1
     })
   }
-
+  goPersonDetail = (index: number) => {
+    router.pushUrl({
+      url: CommonConstants.SELECT_FRIEND_DETAIL
+    })
+  }
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
       ForEach(this.StrangePersonList, (item: StrangePersonType, index: number) => {
         Column() {
           Stack() {
-            Image(item.uri).width(340 - 20 * (index-this.headIndex)).height(590 - 20*(index - this.headIndex)).borderRadius(12)
+            Image(item.uri)
+              .width(340 - 20 * (index - this.headIndex))
+              .height(590 - 20 * (index - this.headIndex))
+              .borderRadius(12)
             Column() {
               Text(item.name)
                 .font({ size: 24, weight: 500, family: 'PingFangSC, PingFang SC' })
@@ -150,6 +172,7 @@ export default struct SwiperForSearchPeople {
                 .backgroundColor('rgba(42, 42, 42, 0.8)')
                 .justifyContent(FlexAlign.Center)
                 .alignItems(VerticalAlign.Center)
+                .onClick(() => this.goPersonDetail(index))
 
                 Row() {
                   Row() {
@@ -209,6 +232,9 @@ export default struct SwiperForSearchPeople {
           angle: index === this.headIndex ? this.offsetVal / 10 : 0
         })
       })
-    }
+    }.offset({
+      x: 0,
+      y: this.screenY
+    })
   }
 }
