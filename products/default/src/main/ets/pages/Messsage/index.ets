@@ -2,6 +2,8 @@ import { Navbar } from '../../components'
 import { newFriendList, chatList } from './Mock/MockData'
 import { FriendListType, ChatListItemType } from './types'
 import uiEffect from '@ohos.graphics.uiEffect'
+import router from '@ohos.router'
+import { CommonConstants } from '../../constants/CommonConstants'
 
 @Entry
 @Component
@@ -9,6 +11,11 @@ export default struct Message {
   scroller: Scroller = new Scroller()
   // 毛玻璃 仅真机生效
   filter = (show: boolean | undefined | null): uiEffect.Filter => uiEffect.createFilter().blur(show ? 20 : 0)
+  goFriendDetails = () => {
+    router.pushUrl({
+      url: CommonConstants.SELECT_FRIEND_DETAIL
+    })
+  }
 
   build() {
     Column() {
@@ -50,7 +57,7 @@ export default struct Message {
                 .interpolation(ImageInterpolation.High)
                 .compositingFilter(this.filter(item.needCloud))
               Text(item.desc).position({ left: 8, bottom: 4 }).fontColor('#fff').fontSize(11).fontWeight(400)
-            }.margin({ right: 8 })
+            }.margin({ right: 8 }).onClick(() => this.goFriendDetails())
           })
           Column() {
             Image($r('app.media.friend_arrow_right')).width(13).height(13).borderRadius(50).margin({ bottom: 3 })

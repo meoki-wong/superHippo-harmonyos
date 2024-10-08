@@ -87,3 +87,7 @@ export const StrangePersonLisst: StrangePersonType[] = [
   },
 
 ]
+
+export const userTagList: Array<string> = [
+  '认识朋友', '我喜欢美国电影', '喜欢足球', '台球', '166cm'
+]

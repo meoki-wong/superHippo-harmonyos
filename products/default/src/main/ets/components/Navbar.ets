@@ -35,5 +35,6 @@ export default struct Navbar {
     .backgroundColor(this.showOpacity ? 'rgba(0,0,0,0)' : this.bgColor)
     .alignItems(VerticalAlign.Bottom)
     .position({ x: 0, y: 0 })
+    .zIndex(100)
   }
 }

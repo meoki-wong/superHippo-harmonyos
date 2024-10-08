@@ -52,7 +52,7 @@ export default struct PassCard {
             .fontSize(16)
             .fontWeight(500)
             .margin({ right: 17 })
-        }.justifyContent(FlexAlign.End).width('100%').margin({ bottom: 25 })
+        }.justifyContent(FlexAlign.End).width('100%')
 
         Swiper(this.swiperController){
           Column() {

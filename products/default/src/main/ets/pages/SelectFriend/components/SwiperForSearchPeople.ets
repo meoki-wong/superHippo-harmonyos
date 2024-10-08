@@ -2,6 +2,7 @@ import { StrangePersonList, StrangePersonLisst } from '../utils/MockData'
 import { StrangePersonType } from '../types'
 import router from '@ohos.router'
 import { CommonConstants } from '../../../constants/CommonConstants'
+import FriendDetail from '../FriendDetail'
 
 @Entry
 @Component
@@ -12,20 +13,18 @@ export default struct SwiperForSearchPeople {
   @State changeHeightVal: number = 0
   @State changeOffsetVal: number = 0
   @State headIndex: number = 0
-  @State screenY: number = 0
+  @State showDetail: boolean = false
+  @State rotateAngle: number = 0
+
+  @Builder
+  ShowDetailBuilder() {
+    Column() {
+      FriendDetail()
+    }
+  }
 
   aboutToAppear(): void {
     this.addPersonList()
-  }
-
-  pageTransition() {
-    // 该页面进入动画时长为1000ms，尽量与另一页面的退出动画时长匹配
-    PageTransitionEnter({ duration: 1000 })
-      .slide(SlideEffect.Left)
-    // 该页面退出动画时长为1200ms，尽量与另一页面的进入动画时长匹配
-    PageTransitionExit({ duration: 1200 })
-      .translate({ x: 0, y: 100.0 })
-      .slide(SlideEffect.Top)
   }
 
   addPersonList = () => {
@@ -101,9 +100,16 @@ export default struct SwiperForSearchPeople {
     })
   }
   goPersonDetail = (index: number) => {
-    router.pushUrl({
-      url: CommonConstants.SELECT_FRIEND_DETAIL
+    animateTo({
+      duration: 50,
+      onFinish: () => {
+        this.showDetail = true
+      }
+    }, () => {
+      this.rotateAngle = -180
+
     })
+
   }
 
   build() {
@@ -164,7 +170,7 @@ export default struct SwiperForSearchPeople {
                * */
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Row() {
-                  Image($r('app.media.arrow_bottom')).width(20).height(20)
+                  Image($r('app.media.arrow_bottom')).width(20).height(20).rotate({ angle: this.rotateAngle })
                 }
                 .width(40)
                 .height(40)
@@ -232,9 +238,8 @@ export default struct SwiperForSearchPeople {
           angle: index === this.headIndex ? this.offsetVal / 10 : 0
         })
       })
-    }.offset({
-      x: 0,
-      y: this.screenY
+    }.bindContentCover(this.showDetail, this.ShowDetailBuilder(), {
+      modalTransition: ModalTransition.DEFAULT
     })
   }
 }
