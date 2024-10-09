@@ -24,6 +24,7 @@ export default struct SwiperForSearchPeople {
   }
 
   aboutToAppear(): void {
+    console.log('-----触发进入------')
     this.addPersonList()
   }
 

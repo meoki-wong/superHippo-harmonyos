@@ -1,7 +1,7 @@
 {
   "app": {
     "bundleName": "com.example.superhippo",
-    "patchVersionCode": 2000013,
+    "patchVersionCode": 2000016,
     "versionCode": 1000000
   },
   "module": {

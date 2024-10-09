@@ -12,3 +12,9 @@ export interface StrangePersonType {
   age: number,
   isGone?: boolean
 }
+
+export interface feedBackItemListType {
+  id: number,
+  title: string,
+  desc: string
+}

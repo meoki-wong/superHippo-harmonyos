@@ -1,12 +1,21 @@
 import Navbar from '../../../components/Navbar'
 import { StrangePersonList, userTagList } from '../utils/MockData'
 import { StrangePersonType } from '../types'
+import { CommonConstants } from '../../../constants/CommonConstants'
+import router from '@ohos.router'
 
 @Entry
 @Component
 export default struct FriendDetail {
   @State swiperIndex: number = 0
   scroller: Scroller = new Scroller()
+  swiperController: SwiperController = new SwiperController()
+
+  goFeedBack = () => {
+    router.pushUrl({
+      url: CommonConstants.SELECT_FRIEND_FEEDBACK
+    })
+  }
   build() {
     Column(){
       Navbar({
@@ -16,10 +25,9 @@ export default struct FriendDetail {
       })
       Scroll(this.scroller){
         Column() {
-
           Stack() {
-            Swiper() {
-              ForEach(StrangePersonList, (item: StrangePersonType) => {
+            Swiper(this.swiperController) {
+              ForEach(StrangePersonList, (item: StrangePersonType, index:number) => {
                 Image(item.uri).width('100%').height(480).borderRadius({ bottomLeft: 12, bottomRight: 12 })
               })
             }.indicator(false).autoPlay(true).onChange((index: number) => {
@@ -36,6 +44,9 @@ export default struct FriendDetail {
                   .borderRadius(4)
                   .borderWidth(this.swiperIndex === index ? 1 : 0)
                   .borderColor('#fff')
+                  .onClick(() => {
+                    this.swiperController.changeIndex(index)
+                  })
               })
             }.position({ left: 20, bottom: 16 })
           }
@@ -99,7 +110,7 @@ export default struct FriendDetail {
               Text('关于我').margin({bottom: 15}).width('100%').font({size: 16, weight: 500}).fontColor('#fff')
               Text('是个懒人 及其被动 摩羯 充满热情 熟悉是个懒人 及其被动 摩羯 充满热情 熟悉').font({size: 14, weight: 400}).fontColor('#CAC0E0')
             }.width('100%').margin({bottom: 32})
-            Text('举报或反馈').font({weight: 400, size: 12}).fontColor('#8678A3')
+            Text('举报或反馈').font({weight: 400, size: 12}).fontColor('#8678A3').onClick(this.goFeedBack)
           }.padding({ left: 20, right: 20 }).margin({ top: 17, bottom: 30 })
 
         }.width('100%').constraintSize({minHeight: '100%'}).backgroundColor('#121325')

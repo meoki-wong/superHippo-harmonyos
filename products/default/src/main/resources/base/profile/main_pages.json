@@ -3,6 +3,7 @@
     "pages/Welcome/index",
     "pages/Mine/PostNews/index",
     "pages/SelectFriend/index",
+    "pages/SelectFriend/FeedBack/index",
     "pages/SelectFriend/FriendDetail/index",
     "pages/Index",
     "pages/AdaptiveIndex",

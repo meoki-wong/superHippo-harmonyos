@@ -126,4 +126,8 @@ export class CommonConstants {
    * 约吧 - 朋友详情路由
    * */
   static readonly SELECT_FRIEND_DETAIL: string = 'pages/SelectFriend/FriendDetail/index'
+  /*
+   * 约吧 - 举报反馈路由
+   * */
+  static readonly SELECT_FRIEND_FEEDBACK: string = 'pages/SelectFriend/FeedBack/index'
 }
